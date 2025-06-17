@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Le Bruit Des Planches
 
-## Getting Started
+Le Bruit Des Planches est un site vitrine/blog statique pour la pièce de théâtre _Gueules Noires_, avec une section éditoriale (articles, tops, critiques) administrée via un CMS simple et sans backend.
 
-First, run the development server:
+---
+
+## 🎯 Objectif
+
+- Mettre en avant des pièces (infos, visuels, dates)
+- Poster du contenu éditorial autour du théâtre
+- Optimiser le SEO avec une approche content-first
+- Gérer le site via une interface d’admin accessible (Decap CMS)
+
+---
+
+## 🧰 Stack
+
+| Tech         | Usage                             |
+|--------------|------------------------------------|
+| Next.js      | Frontend statique (SSG)            |
+| Tailwind CSS | Design rapide et responsive        |
+| Decap CMS    | CMS Git-based via interface `/admin` |
+| Markdown     | Stockage des articles (`/content`) |
+| Netlify      | Déploiement + Git Gateway          |
+| ButtonDown   | Envoi d’emails (Newsletter) |
+| Resend       | Envoi d’emails (formulaire contact) |
+
+---
+
+## 📂 Structure
+/src
+├── content/
+│   └── articles/         # Articles au format Markdown
+├── app/
+│   ├── page.tsx         # Page d’accueil
+│   ├── layout.tsx         # Root Layout
+│   ├── articles/[slug]/page.tsx # Page dynamique d’article
+│   ├── contact/page.tsx       # Page de contact avec formulaire
+│   └── admin/            # Interface Decap CMS
+├── globals.css           # Tailwind + reset
+├── .env.local            # Clés API (non commit)
+
+---
+
+## 🚀 Lancer le projet en local
 
 ```bash
+git clone https://github.com/ton-utilisateur/le-bruit-des-planches.git
+cd le-bruit-des-planches
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+Accessible sur http://localhost:3000.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+⸻
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧪 Ajouter un article manuellement
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Créer un fichier .md dans content/articles/ :
 
-## Learn More
+---
+title: "Top 10 des pièces à Avignon 2025"
+slug: "top-10-avignon"
+description: "Nos coups de cœur du festival"
+date: "2025-06-17"
+---
 
-To learn more about Next.js, take a look at the following resources:
+Contenu markdown ici...
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔐 Variables d’environnement
 
-## Deploy on Vercel
+Créer un fichier .env.local (non commit) :
+RESEND_API_KEY=your_resend_key
+RESEND_CONTACT_TO=you@example.com
+BUTTONDOWN_API_KEY=your_buttondown_key
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ✉️ Formulaire de contact (via Resend)
+
+POST vers /api/send.ts. Nécessite RESEND_API_KEY.
+Modifiable dans pages/contact.tsx.
+
+---
+
+## 🛠 Admin CMS (Decap)
+
+Accessible à /admin.
+Assurez-vous que Git Gateway est activé dans Netlify + que vous êtes authentifié via Identity.
+
+Fichier config : public/admin/config.yml.
+
+---
+
+## 🌍 Déploiement
+
+Déploiement auto via Netlify (connecté à GitHub).
+Variables d’env nécessaires à configurer dans Netlify → Project Settings → Environment.
+
+---
+
+## 📝 Licence
+
+Libre d’utilisation pour usage éditorial ou culturel.
+Pas de garantie, pas de support. Faites-en ce que vous voulez.
+
+---
+
+## 🤝 Contribuer
+
+Fork, PR, issue, ou juste une étoile ⭐ si ça vous aide.

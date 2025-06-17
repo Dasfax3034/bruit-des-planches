@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import Header from "@/components/header/header";
+import Footer from "@/components/footer/footer";
+import Newsletter from "@/components/footer/newsletter";
 
 export const metadata: Metadata = {
   title: "Le Bruit des Planches",
@@ -17,11 +20,14 @@ export default function RootLayout({
       <body className={`antialiased`} suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <Header />
+          <main className="pt-20 pb-8 px-4 md:px-6 lg:px-16 xl:px-20">{children}</main>
+          <Newsletter />
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
