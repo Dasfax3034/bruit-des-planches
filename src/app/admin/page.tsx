@@ -3,7 +3,7 @@
 export default function Admin() {
   return (
     <html
-      lang="en"
+      lang="fr"
       dangerouslySetInnerHTML={{
         __html: `
         <!doctype html>
