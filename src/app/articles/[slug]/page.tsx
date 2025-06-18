@@ -127,7 +127,7 @@ export default async function ArticlePage({ params }: Props) {
     author: {
       "@type": "Person",
       name: "Zlabia Zlabiette",
-      url: "https://bruit-des-planches.com/a-propos",
+      url: "https://bruit-des-planches.com/foire-aux-questions",
     },
     image: imagePaths,
   };
