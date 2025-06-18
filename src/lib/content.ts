@@ -15,7 +15,7 @@ export function getAllArticles(directory: string) {
 
     return {
       slug,
-      ...(data as { date?: string; title?: string; description?: string; image?: string }),
+      ...(data as { date?: string; title?: string; thumbnail?: string; body?: string; category?: string }),
     };
   }).sort((a, b) => new Date(b.date || new Date()).getTime() - new Date(a.date || new Date()).getTime());
 }
